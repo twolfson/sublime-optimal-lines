@@ -1,3 +1,4 @@
+import sublime
 import sublime_plugin
 
 
@@ -12,4 +13,9 @@ class OptimalLinesListener(sublime_plugin.EventListener):
         self.highlight_lines(view)
 
     def highlight_lines(self, view):
-        print 'hi'
+        # TODO: Don't highlight quick panel or Find in Files
+        regions = [sublime.Region(0, 5)]
+        view.add_regions('optimize_lines_highlight',
+                         regions,
+                         'markup.inserted',
+                         sublime.HIDE_ON_MINIMAP)
