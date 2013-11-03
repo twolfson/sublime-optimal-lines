@@ -94,7 +94,7 @@ class OptimalLinesListener(sublime_plugin.EventListener):
             # DEV: This section is not copy/pate
             starting_pt = 0
             if starting_char:
-                starting_pt(starting_char.start(1))
+                starting_pt = starting_char.start(1)
             starting_points.add(starting_pt)
 
         # Map the end points
