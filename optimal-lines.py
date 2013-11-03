@@ -86,14 +86,16 @@ class OptimalLinesListener(sublime_plugin.EventListener):
 
         # Find the common starting points of each line
         # TODO: This is copy/paste. Stop that.
-        starting_points = []
+        starting_points = set()
         for line in lines:
             text = view.substr(line)
             starting_char = re.match(r'\s*([^\s])', text)
-            if not starting_char:
-                continue
-            # DEV: This line is not copy/pate
-            starting_points.append(starting_char.start(1))
+
+            # DEV: This section is not copy/pate
+            starting_pt = 0
+            if starting_char:
+                starting_pt(starting_char.start(1))
+            starting_points.add(starting_pt)
 
         # Map the end points
         distance = self.get_optimal_limit(view)
