@@ -21,12 +21,17 @@ class OptimalLinesListener(sublime_plugin.EventListener):
     def on_selection_modified(self, view):
         self.adjust_rulers(view)
 
+    # When we lose focus, reset the rulers
+    def on_deactivated(self, view):
+        # TODO: Use a common function to set the rulers
+        view.settings().set('rulers', [])
+
     def get_optimal_limit(self, view):
-        """Fetch the optimal line limit"""
+        """Fetch the optimal line limit."""
         return view.settings().get('optimal_line_limit', 75)
 
     def highlight_lines(self, view):
-        """Mark every character after 75 characters as over the limit"""
+        """Mark every character after 75 characters as over the limit."""
         # If we are in `Find in Files`, return
         if view.settings().get('syntax') == FIND_IN_FILES_SYNTAX:
             return
@@ -69,4 +74,4 @@ class OptimalLinesListener(sublime_plugin.EventListener):
 
     def adjust_rulers(self, view):
         """Display a cursor at the typographic limit after a threshold."""
-        pass
+        view.settings().set('rulers', [20])
