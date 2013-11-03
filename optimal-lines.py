@@ -1,5 +1,4 @@
 import re
-
 import sublime
 import sublime_plugin
 
@@ -48,6 +47,6 @@ class OptimalLinesListener(sublime_plugin.EventListener):
 
         view.add_regions('optimize_lines_highlight',
                          regions,
-                         'optimal-lines',
+                         'invalid.deprecated',  # Electric purple =3
                          sublime.HIDE_ON_MINIMAP |
                          sublime.DRAW_OUTLINED)
