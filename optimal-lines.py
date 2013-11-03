@@ -26,7 +26,6 @@ class OptimalLinesListener(sublime_plugin.EventListener):
         # except:
         #     print None
         # print 'view:        ', view.id()
-        print view.buffer_id(), view.visible_region(), view.viewport_position()
 
         # Create a collection var for regions
         regions = []
