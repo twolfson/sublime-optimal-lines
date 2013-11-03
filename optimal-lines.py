@@ -21,8 +21,11 @@ class OptimalLinesListener(sublime_plugin.EventListener):
         # print view.settings().get('syntax')
         # print view.scope_name(0)
         # print view.substr(sublime.Region(0, view.size()))
-        print 'active view: ', sublime.active_window().active_view()
-        print 'view:        ', view
+        try:
+            print 'active view: ', sublime.active_window().active_view().id()
+        except:
+            print None
+        print 'view:        ', view.id()
 
         # Create a collection var for regions
         regions = []
