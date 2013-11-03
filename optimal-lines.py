@@ -76,4 +76,28 @@ class OptimalLinesListener(sublime_plugin.EventListener):
 
     def adjust_rulers(self, view):
         """Display a cursor at the typographic limit after a threshold."""
-        view.settings().set('rulers', [20])
+        # Collect all lines in selection
+        lines = set()
+        for region in view.sel():
+            for line in view.lines(region):
+                lines.add(line)
+
+        # TODO: Filter out lines which are not close to their limit
+
+        # Find the common starting points of each line
+        # TODO: This is copy/paste. Stop that.
+        starting_points = []
+        for line in lines:
+            text = view.substr(line)
+            starting_char = re.match(r'\s*([^\s])', text)
+            if not starting_char:
+                continue
+            # DEV: This line is not copy/pate
+            starting_points.append(starting_char.start(1))
+
+        # Map the end points
+        distance = self.get_optimal_limit(view)
+        end_points = map(lambda pt: pt + distance, starting_points)
+
+        # Draw the rulers
+        view.settings().set('rulers', end_points)
