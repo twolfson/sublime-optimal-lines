@@ -24,6 +24,8 @@ class OptimalLinesListener(sublime_plugin.EventListener):
     # When we lose focus, reset the rulers
     def on_deactivated(self, view):
         # TODO: Use a common function to set the rulers
+        # TODO: Extend default cursors (save on_load)
+            # but that won't adjust for syntax specific
         view.settings().set('rulers', [])
 
     def get_optimal_limit(self, view):
