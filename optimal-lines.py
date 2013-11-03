@@ -2,6 +2,7 @@ import re
 import sublime
 import sublime_plugin
 
+FIND_IN_FILES_SYNTAX = 'Packages/Default/Find Results.hidden-tmLanguage'
 
 class OptimalLinesListener(sublime_plugin.EventListener):
     # When a file is loaded, highlight it
@@ -14,7 +15,12 @@ class OptimalLinesListener(sublime_plugin.EventListener):
         self.highlight_lines(view)
 
     def highlight_lines(self, view):
-        # TODO: Don't highlight quick panel or Find in Files
+        # If we are in `Find in Files`, return
+        view_settings = view.settings()
+        if view_settings.get('syntax') == FIND_IN_FILES_SYNTAX:
+            return
+
+        # TODO: Don't highlight quick panel (see 173226f)
         # Collect the lines
         file_region = sublime.Region(0, view.size())
         lines = view.lines(file_region)
