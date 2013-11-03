@@ -75,7 +75,14 @@ class OptimalLinesListener(sublime_plugin.EventListener):
                          sublime.DRAW_OUTLINED)
 
     def adjust_rulers(self, view):
-        """Display a cursor at the typographic limit after a threshold."""
+        """Display a ruler at the typographic limit after a threshold."""
+
+        # TODO: Experiment with caret (cursor)
+        # // Valid values are "smooth", "phase", "blink", "wide" and "solid".
+        # "caret_style": "solid"
+        # Disable for now
+        return
+
         # Collect all lines in selection
         lines = set()
         for region in view.sel():
