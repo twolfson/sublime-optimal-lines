@@ -36,21 +36,18 @@ class OptimalLinesListener(sublime_plugin.EventListener):
                 continue
 
             # Grab the start
-            start = line.begin() + starting_char.start(1)
+            text_start = line.begin() + starting_char.start(1)
 
-            # Count 65 characters from the character
-            # TODO: Figure out how to highlight past a character
-            # TODO: This is a limitation of Sublime Text. It should extend beyond the region for proper effect.
-            # TODO: Make this font-size and settings based
-            # end = start + 65
-            end = min(start + 65, line.end())
-
-            # Add the region to be highlighted
-            regions.append(sublime.Region(start, end))
+            # If we are over 65 characters, mark the violating characters
+            # TODO: Make `text_limit` font-size and settings based
+            # TODO: Although, that wouldn't be very cross-developer friendly
+            text_end = line.end()
+            text_limit = text_start + 65
+            if text_end > text_limit:
+                regions.append(sublime.Region(text_limit, text_end))
 
         view.add_regions('optimize_lines_highlight',
                          regions,
                          'optimal-lines',
-                         # sublime.HIDE_ON_MINIMAP +
-                         # sublime.DRAW_OUTLINED)
-                         sublime.HIDDEN)
+                         sublime.HIDE_ON_MINIMAP |
+                         sublime.DRAW_OUTLINED)
