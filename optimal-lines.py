@@ -11,7 +11,8 @@ class OptimalLinesListener(sublime_plugin.EventListener):
 
     # When a file is modified, highlight it
     def on_modified(self, view):
-        # TODO: It would be ideal to re-highlight only if the indentation has changed or line has been added/deleted
+        # TODO: It would be ideal to re-highlight only if the indentation has
+            # changed or line has been added/deleted
         self.highlight_lines(view)
 
     def highlight_lines(self, view):
@@ -55,7 +56,7 @@ class OptimalLinesListener(sublime_plugin.EventListener):
             # TODO: Make `text_limit` font-size and settings based
             # TODO: Although, that wouldn't be very cross-developer friendly
             text_end = line.end()
-            text_limit = text_start + 65
+            text_limit = text_start + view_settings.get('optimal_line_limit', 75)
             if text_end > text_limit:
                 regions.append(sublime.Region(text_limit, text_end))
 
