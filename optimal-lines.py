@@ -18,6 +18,8 @@ class OptimalLinesListener(sublime_plugin.EventListener):
         # Collect the lines
         file_region = sublime.Region(0, view.size())
         lines = view.lines(file_region)
+        # print view.settings().get('syntax')
+        print view.scope_name(0)
 
         # Create a collection var for regions
         regions = []
