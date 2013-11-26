@@ -25,11 +25,12 @@ class OptimalLinesListener(sublime_plugin.EventListener):
         # TODO: Use a common function to set the rulers
         # TODO: Extend default cursors (save on_load) but that won't adjust for
         # syntax specific
-        view.settings().set('rulers', [])
+        # view.settings().set('rulers', [])
+        pass
 
     def get_optimal_limit(self, view):
         """Fetch the optimal line limit."""
-        return view.settings().get('optimal_line_limit', 75)
+        return view.settings().get('relative_line_limit', 75)
 
     def highlight_lines(self, view):
         """Mark every character after 75 characters as over the limit."""

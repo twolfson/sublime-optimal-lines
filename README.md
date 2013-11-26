@@ -19,7 +19,7 @@ for relative line length tools. `sublime-optimal-lines` fills this gap:
 in the Sublime Text terminal (``ctrl+` ``) which utilizes `git clone`.
 
 ```python
-import os; path=sublime.packages_path(); (os.makedirs(path) if not os.path.exists(path) else None); window.run_command('exec', {'cmd': ['git', 'clone', 'https://github.com/twolfson/sublime-hooks', 'hooks'], 'working_dir': path})
+import os; path=sublime.packages_path(); (os.makedirs(path) if not os.path.exists(path) else None); window.run_command('exec', {'cmd': ['git', 'clone', 'https://github.com/twolfson/sublime-optimal-lines', 'optimal-lines'], 'working_dir': path})
 ```
 
 Packages can be uninstalled via "Package Control: Remove Package" via
@@ -27,10 +27,14 @@ the command pallete, `ctrl+shift+p` on Windows/Linux,`command+shift+p`
 on Mac.
 
 ## Documentation
-_(Coming soon)_
+`sublime-optimal-lines` provides a few settings for customization
 
-## Examples
-_(Coming soon)_
+```js
+{
+  // Specify amount of characters for relative line limit (default: 75)
+  "relative_line_limit": 100
+}
+```
 
 ## Donating
 Support this project and [others by twolfson][gittip] via [gittip][].
