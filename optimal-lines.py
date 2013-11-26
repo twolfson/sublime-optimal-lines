@@ -12,8 +12,7 @@ class OptimalLinesListener(sublime_plugin.EventListener):
 
     # When a file is modified, highlight it
     def on_modified(self, view):
-        # TODO: It would be ideal to re-highlight only if the indentation has
-            # changed or line has been added/deleted
+        # TODO: It would be ideal to re-highlight only if the indentation has changed or line has been added/deleted
         self.highlight_lines(view)
         self.adjust_rulers(view)
 
@@ -24,8 +23,8 @@ class OptimalLinesListener(sublime_plugin.EventListener):
     # When we lose focus, reset the rulers
     def on_deactivated(self, view):
         # TODO: Use a common function to set the rulers
-        # TODO: Extend default cursors (save on_load)
-            # but that won't adjust for syntax specific
+        # TODO: Extend default cursors (save on_load) but that won't adjust for
+        # syntax specific
         view.settings().set('rulers', [])
 
     def get_optimal_limit(self, view):
